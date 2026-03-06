@@ -1,0 +1,1 @@
+console.log('bismillahir rahmnir rahim')
