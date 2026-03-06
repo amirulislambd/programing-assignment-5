@@ -38,7 +38,45 @@
     </style>
   </head>
   <body>
-    <h1>Bismillahir rahmanir rahim</h1>
+    <div class="flex flex-col space-y-3 justify-center items-center ">
+      <div>
+        <div class="hero min-h-screen">
+          <div class="hero-content flex-col">
+              <div class="card bg-base-100 w-full shrink-0 shadow-2xl p-5 md:p-10">
+                <div class="text-center space-y-3">
+                  <img class="mx-auto" src="./assets/github-logo.png" alt="" />
+                <h1 class="text-3xl font-bold">GitHub Issues Tracker</h1>
+                <p class="">Sign in to manage your issues.</p>
+              </div>
+              <div class="card-body">
+                <fieldset class="fieldset">
+                  <label class="label">Username</label>
+                  <input
+                    type="text"
+                    class="input outline-none"
+                    placeholder="Enter Username"
+                  />
+                  <p class="text-purple-500">Default: admin</p>
+
+                  <label class="label">Password</label>
+                  <input type="password" class="input outline-none" placeholder="Password" />
+                  <p class="text-purple-500">Default: admin123</p>
+
+                  <button class="btn btn-primary mt-4">Sign In</button>
+
+                  <div class="divider lg:divider-horizontal">OR</div>
+                  <div class="flex flex-col items-center justify-center ">
+                    <p class="mb-5 text-sm md:text-lg">Demo Credentials:</p>
+                    <h3 class=" text-sm md:text-lg"><span class="font-bold  text-sm md:text-lg">UserName: </span>admin</h3>
+                    <h3 class=" text-sm md:text-lg"><span class="font-bold  text-sm md:text-lg">Password: </span> admin123</h3>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="./js/login.js"></script>
   </body>
