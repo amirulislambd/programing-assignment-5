@@ -6,23 +6,21 @@ const openCards = document.getElementById("openCards");
 const closedCards = document.getElementById("closedCards");
 const totalIssues = document.getElementById("totalIssues");
 const issues_modal = document.getElementById("issues_modal");
-const spinner = document.getElementById('spinner')
+const spinner = document.getElementById("spinner");
+
 let countCard = [];
 let countOpenCard = [];
 let countClosed = [];
 
-function showSpinner(status){
-    if(status === true){
-        spinner.classList.remove('hidden')
-        cardContainer.classList.add('hidden') 
-    }else{
-        spinner.classList.add('hidden')
-        cardContainer.classList.remove('hidden') 
-
-    } 
+function showSpinner(status) {
+  if (status === true) {
+    spinner.classList.remove("hidden");
+    cardContainer.classList.add("hidden");
+  } else {
+    spinner.classList.add("hidden");
+    cardContainer.classList.remove("hidden");
+  }
 }
-
-
 
 function updateCount(status) {
   if (status === "all") {
@@ -46,7 +44,6 @@ document.getElementById("buttons").addEventListener("click", (e) => {
       openCards.classList.add("hidden");
       closedCards.classList.add("hidden");
       updateCount("all");
-      
     }
     if (target.id === "openBtn") {
       cardContainer.classList.add("hidden");
@@ -64,22 +61,22 @@ document.getElementById("buttons").addEventListener("click", (e) => {
 });
 
 async function loadAllIssues() {
-    showSpinner(true)
+  showSpinner(true);
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
   displayAllIssues(data.data);
-  showSpinner(false)
+  showSpinner(false);
 }
 async function loadSingleIssues(id) {
-    showSpinner(true)
+  showSpinner(true);
   const res = await fetch(
     `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
   );
   const data = await res.json();
   modalIssues(data.data);
-  showSpinner(false)
+  showSpinner(false);
 }
 
 async function modalIssues(data) {
@@ -126,6 +123,23 @@ async function modalIssues(data) {
   modal.append(createModal);
   issues_modal.showModal();
 }
+async function loadSearchIssue() {
+  const searchInput = document.getElementById("search");
+  const searchValue = searchInput.value;
+
+  if (searchValue.trim() === "") {
+    loadAllIssues();
+    return;
+  }
+  showSpinner(true);
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
+  );
+  const data = await res.json();
+  displayAllIssues(data.data);
+  showSpinner(false);
+}
+document.getElementById("search").addEventListener("input", loadSearchIssue);
 
 loadAllIssues();
 
@@ -165,7 +179,7 @@ async function displayAllIssues(cards) {
               <div class="divider"></div>
               <div class="space-y-2">
                 <p>#1 by ${card.author}</p>
-                <p>${new Date(card.updatedAt).toLocaleDateString('en','GB')}</p>
+                <p>${new Date(card.updatedAt).toLocaleDateString("en", "GB")}</p>
               </div>
             </div>
               `;
