@@ -5,6 +5,7 @@ const cardContainer = document.getElementById("cardContainer");
 const openCards = document.getElementById("openCards");
 const closedCards = document.getElementById("closedCards");
 const totalIssues = document.getElementById("totalIssues");
+const issues_modal = document.getElementById("issues_modal");
 let countCard = [];
 let countOpenCard = [];
 let countClosed = [];
@@ -55,11 +56,57 @@ async function loadAllIssues() {
 }
 async function loadSingleIssues(id) {
   const res = await fetch(
-    "https://phi-lab-server.vercel.app/api/v1/lab/issue/{id}",
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
   );
   const data = await res.json();
-  displaySingleIssues(data);
+  modalIssues(data.data);
 }
+
+async function modalIssues(data) {
+  const modal = document.getElementById("modal");
+  modal.innerHTML = "";
+  const createModal = document.createElement("div");
+  createModal.innerHTML = `
+  <div class="modal-box">
+                <h3 class="text-xl font-bold">${data.title}</h3>
+                <div class=" flex items-center gap-3 mb-3">
+                <div><p class=" text-center text-white uppercase rounded-full px-3 py-1 ${data.status === "open" ? "bg-green-500" : "bg-purple-500"}"> ${data.status}</p></div>
+                    <p class="py-4">Opened by <span>${data.author}.</span></p>
+                    <p class="py-4"><span>${new Date(data.createdAt).toLocaleDateString("en-GB")}</span></p>
+                </div>
+
+                <div class="flex gap-2 my-3">
+                <p class=" bg-red-100 rounded-full border border-red-500 text-red-500 text-center uppercase  px-2 font-bold flex items-center">
+                  <span><i class="fa-solid fa-bug"></i></span> ${data.labels[0]}
+                </p>
+                <p class=" bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 text-center uppercase  px-2  font-bold flex  items-center">
+                  <span><i class="fa-regular fa-life-ring"></i></span> ${data.labels[1]}
+                </p>
+              </div>
+
+                <p class="">${data.description}</p>
+                <div class="flex justify-between my-3">
+                    <div>
+                        <p>assignee:</p>
+                        <p class="text-xl font-bold">${data.assignee}</p>
+                    </div>
+                    <div class="flex flex-col items-center ">
+                        <p>priority</p>
+                        <p class="bg-red-500  px-3 text-center text-white rounded-full uppercase">${data.priority}</p>
+                    </div>
+                </div>
+                <div class="modal-action">
+                  <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                  </form>
+                </div>
+              </div>
+              `;
+  modal.append(createModal);
+  issues_modal.showModal();
+}
+
 loadAllIssues();
 
 async function displayAllIssues(cards) {

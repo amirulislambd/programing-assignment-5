@@ -71,8 +71,10 @@
               <img src="./assets/Aperture.png" alt="Aperture.png" />
             </div>
             <div class="flex flex-col items-center md:items-start">
-              <h1 id="totalIssues" class="text-xl font-bold md:text-2xl">0</h1>
-              <p>Track and manage your project issues</p>
+              <div class="flex gap-1 text-xl font-bold md:text-2xl">
+                <h1 id="totalIssues" >0</h1><p>Issues</p>
+              </div>
+              <p>Track and manage your project issues </p>
             </div>
           </div>
           <div class="divider mb-0"></div>
@@ -130,6 +132,17 @@
        <section id="closedCards" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 hidden">
 
        </section>
+
+       <!-- modal -->
+        <section >
+            <!-- Open the modal using ID.showModal() method -->
+            <!-- <button class="btn" onclick="issues_modal.showModal()">open modal</button> -->
+            <dialog id="issues_modal" class="modal modal-bottom sm:modal-middle">
+              <div id="modal">
+
+              </div>
+            </dialog>
+        </section>
     </main>
     <script src="./js/home.js"></script>
   </body>
