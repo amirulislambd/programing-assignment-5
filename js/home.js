@@ -6,9 +6,24 @@ const openCards = document.getElementById("openCards");
 const closedCards = document.getElementById("closedCards");
 const totalIssues = document.getElementById("totalIssues");
 const issues_modal = document.getElementById("issues_modal");
+const spinner = document.getElementById('spinner')
 let countCard = [];
 let countOpenCard = [];
 let countClosed = [];
+
+function showSpinner(status){
+    if(status === true){
+        spinner.classList.remove('hidden')
+        cardContainer.classList.add('hidden') 
+    }else{
+        spinner.classList.add('hidden')
+        cardContainer.classList.remove('hidden') 
+
+    } 
+}
+
+
+
 function updateCount(status) {
   if (status === "all") {
     totalIssues.innerText = countCard.length;
@@ -31,6 +46,7 @@ document.getElementById("buttons").addEventListener("click", (e) => {
       openCards.classList.add("hidden");
       closedCards.classList.add("hidden");
       updateCount("all");
+      
     }
     if (target.id === "openBtn") {
       cardContainer.classList.add("hidden");
@@ -48,18 +64,22 @@ document.getElementById("buttons").addEventListener("click", (e) => {
 });
 
 async function loadAllIssues() {
+    showSpinner(true)
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
   displayAllIssues(data.data);
+  showSpinner(false)
 }
 async function loadSingleIssues(id) {
+    showSpinner(true)
   const res = await fetch(
     `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
   );
   const data = await res.json();
   modalIssues(data.data);
+  showSpinner(false)
 }
 
 async function modalIssues(data) {
@@ -144,8 +164,8 @@ async function displayAllIssues(cards) {
               </div>
               <div class="divider"></div>
               <div class="space-y-2">
-                <p>${card.createdAt}</p>
-                <p>${card.updatedAt}</p>
+                <p>#1 by ${card.author}</p>
+                <p>${new Date(card.updatedAt).toLocaleDateString('en','GB')}</p>
               </div>
             </div>
               `;

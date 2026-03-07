@@ -63,6 +63,7 @@
         <button  id="openBtn" class="btn">Open</button>
         <button id="closedBtn" class="btn">Closed</button>
       </div>
+     
       <!-- issues count section -->
       <section class="px-2 py-5 md:py-10 rounded shadow-sm mt-2 md:mt-5">
         <div class="flex flex-col md:flex-row items-center justify-between">
@@ -95,7 +96,7 @@
       </section>
 
       <!--by default all card section -->
-      <section id="cardContainer" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
+      <section id="cardContainer" class="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
         <!-- <div class="card card-body shadow space-y-3 h-fit"> -->
           <div class="flex justify-between">
             <img src="./assets/Open-Status.png" alt="" />
@@ -124,6 +125,12 @@
           </div>
         </div>
       </section>
+
+      <!-- spinner -->
+      <section id="spinner" class="flex items-center justify-center py-20 hidden">
+       <span class="loading loading-dots loading-xl"></span>
+      </section>
+
       <!-- Opened Cards -->
        <section id="openCards" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 hidden">
 
