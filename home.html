@@ -59,8 +59,8 @@
     <main class="container mx-auto">
       <!-- conditional buttons -->
       <div id="buttons" class="py-5 md:py-8 px-2 shadow bg-white">
-        <button id="allBtn" class="btn">All</button>
-        <button id="openBtn" class="btn">Open</button>
+        <button id="allBtn" class="btn btn-primary">All</button>
+        <button  id="openBtn" class="btn">Open</button>
         <button id="closedBtn" class="btn">Closed</button>
       </div>
       <!-- issues count section -->
@@ -92,9 +92,9 @@
         </div>
       </section>
 
-      <!-- all card section -->
-      <section id="cardContainer" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="card card-body shadow space-y-3 h-fit">
+      <!--by default all card section -->
+      <section id="cardContainer" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
+        <!-- <div class="card card-body shadow space-y-3 h-fit"> -->
           <div class="flex justify-between">
             <img src="./assets/Open-Status.png" alt="" />
             <h1 class="text-red-500 py-2 px-5 md:px-8 bg-red-100 rounded-full md:text-xl font-bold">HIGH</h1>
@@ -122,6 +122,14 @@
           </div>
         </div>
       </section>
+      <!-- Opened Cards -->
+       <section id="openCards" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 hidden">
+
+       </section>
+      <!-- Closed Cards -->
+       <section id="closedCards" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 hidden">
+
+       </section>
     </main>
     <script src="./js/home.js"></script>
   </body>
