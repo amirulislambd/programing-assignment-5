@@ -38,7 +38,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar bg-base-100 shadow-sm">
+    <nav class="navbar bg-base-100 shadow-sm ">
       <div class="flex justify-between container mx-auto">
         <div class="flex items-center gap-1">
           <img class="w-10" src="./assets/github-logo.png" alt="logo" />
@@ -56,12 +56,30 @@
         </div>
       </div>
     </nav>
-    <main class="containermx-auto">
-      <div id="buttons" class=" py-5 px-2 border-[#ddd] bg-white shadow-sm">
+    <main class="container mx-auto">
+      <!-- conditional buttons -->
+      <div id="buttons" class="py-5 md:py-8 px-2 shadow bg-white  ">
         <button class="btn">All</button>
         <button class="btn">Open</button>
         <button class="btn">Closed</button>
       </div>
+      <!-- issues count section -->
+      <section class="px-2 py-5 md:py-10 rounded shadow-sm mt-2 md:mt-5">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="left-side flex flex-col md:flex-row  items-center gap-1">
+            <div class="bg-purple-300/50 p-2 rounded-full"><img src="./assets/Aperture.png" alt="Aperture.png" /></div>
+            <div class="flex flex-col  items-center md:items-start">
+              <h1 id="totalIssues" class="text-xl font-bold md:text-2xl">0</h1>
+              <p>Track and manage your project issues</p>
+            </div>
+          </div>
+          <div class="divider mb-0"></div>
+          <div class="right-sidd flex items-center gap-4">
+            <p><span class="text-green-500 w-5 h-5 rounded-full"><i class="fa-solid fa-circle-dot"></i></span> Open</p>
+            <p><span class="text-purple-500 w-5 h-5"><i class="fa-solid fa-circle-dot"></i> </span>Closed</p>
+          </div>
+        </div>
+      </section>
     </main>
     <script src="./js/home.js"></script>
   </body>
