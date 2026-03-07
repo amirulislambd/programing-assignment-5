@@ -29,7 +29,7 @@
       referrerpolicy="no-referrer"
     />
 
-    <title>Github Issue Tracker</title>
+    <title>Github Issue Tracker login</title>
 
     <style>
       * {
@@ -52,19 +52,20 @@
                 <fieldset class="fieldset">
                   <label class="label">Username</label>
                   <input
+                  id="userName"
                     type="text"
                     class="input outline-none"
                     placeholder="Enter Username"
                   />
-                  <p class="text-purple-500">Default: admin</p>
+                  <p id="defaultUser" class="text-purple-500">Default: admin</p>
 
                   <label class="label">Password</label>
-                  <input type="password" class="input outline-none" placeholder="Password" />
-                  <p class="text-purple-500">Default: admin123</p>
+                  <input type="password" id="password" class="input outline-none" placeholder="Password" />
+                  <p id="defaultPassword" class="text-purple-500">Default: admin123</p>
 
-                  <button class="btn btn-primary mt-4">Sign In</button>
+                  <button id="signInBtn" class="btn btn-primary mt-4">Sign In</button>
 
-                  <div class="divider lg:divider-horizontal">OR</div>
+                  <div class="divider">OR</div>
                   <div class="flex flex-col items-center justify-center ">
                     <p class="mb-5 text-sm md:text-lg">Demo Credentials:</p>
                     <h3 class=" text-sm md:text-lg"><span class="font-bold  text-sm md:text-lg">UserName: </span>admin</h3>

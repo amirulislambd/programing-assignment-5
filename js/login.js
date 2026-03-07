@@ -1,1 +1,47 @@
-console.log('bismillahir rahmnir rahim')
+const userName = document.getElementById("userName");
+const password = document.getElementById("password");
+const defaultUser = document.getElementById("defaultUser");
+const defaultPassword = document.getElementById("defaultPassword");
+
+// function showError(id){
+// if(id === 'userName'){
+//     defaultUser.innerText = "Wrong user name Please enter 'admin'";
+//    defaultUser.classList.add('text-red-500','animate-bounce')
+// }else{
+//     defaultUser.classList.remove('text-red-500','animate-bounce','text-purple-500') 
+//     defaultUser.classList.add('text-green-500') 
+//     defaultUser.innerHTML =`<i class="fa-regular fa-circle-check"></i> Correct Your user name `;
+    
+// }
+// if(id === 'password'){
+
+// }
+// }
+
+document.getElementById("signInBtn").addEventListener("click", () => {
+    defaultUser.innerText =''
+  const userNameValue = userName.value;
+  const passwordValue = password.value;
+  if (userNameValue != "admin") {
+   defaultUser.innerHTML = `<i class="fa-regular fa-circle-xmark"></i> Wrong user name Please enter 'admin'`;
+   defaultUser.classList.add('text-red-500','animate-bounce') 
+    return;
+  }else{
+      defaultUser.classList.remove('text-red-500','animate-bounce','text-purple-500') 
+      defaultUser.classList.add('text-green-500') 
+      defaultUser.innerHTML =`<i class="fa-regular fa-circle-check"></i> Correct Your user name `;
+      
+  }
+   if (passwordValue != "admin123") {
+   defaultPassword.innerHTML = `<i class="fa-regular fa-circle-xmark"></i> Wrong Your Password Please enter 'admin123'`;
+   defaultPassword.classList.add('text-red-500','animate-bounce') 
+    return;
+  }else{
+      defaultPassword.classList.remove('text-red-500','animate-bounce','text-purple-500') 
+      defaultPassword.classList.add('text-green-500') 
+      defaultPassword.innerHTML =`<i class="fa-regular fa-circle-check"></i> Correct Your Password `;
+      window.location.href='../home.html'
+  }
+
+  console.log(userNameValue, passwordValue);
+});
