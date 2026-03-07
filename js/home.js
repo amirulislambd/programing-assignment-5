@@ -4,7 +4,19 @@ const closedBtn = document.getElementById("closedBtn");
 const cardContainer = document.getElementById("cardContainer");
 const openCards = document.getElementById("openCards");
 const closedCards = document.getElementById("closedCards");
-
+const totalIssues = document.getElementById("totalIssues");
+let countCard = [];
+let countOpenCard = [];
+let countClosed = [];
+function updateCount(status) {
+  if (status === "all") {
+    totalIssues.innerText = countCard.length;
+  } else if (status === "open") {
+    totalIssues.innerText = countOpenCard.length;
+  } else if (status === "closed") {
+    totalIssues.innerText = countClosed.length;
+  }
+}
 document.getElementById("buttons").addEventListener("click", (e) => {
   const target = e.target;
   const selectedBtn = document.querySelectorAll("#buttons .btn");
@@ -17,16 +29,19 @@ document.getElementById("buttons").addEventListener("click", (e) => {
       cardContainer.classList.remove("hidden");
       openCards.classList.add("hidden");
       closedCards.classList.add("hidden");
+      updateCount("all");
     }
     if (target.id === "openBtn") {
       cardContainer.classList.add("hidden");
       openCards.classList.remove("hidden");
       closedCards.classList.add("hidden");
+      updateCount("open");
     }
     if (target.id === "closedBtn") {
       cardContainer.classList.add("hidden");
       openCards.classList.add("hidden");
       closedCards.classList.remove("hidden");
+      updateCount("closed");
     }
   }
 });
@@ -46,11 +61,16 @@ async function loadSingleIssues(id) {
   displaySingleIssues(data);
 }
 loadAllIssues();
+
 async function displayAllIssues(cards) {
   cardContainer.innerHTML = "";
   openCards.innerHTML = "";
   closedCards.innerHTML = "";
+  countCard = [];
+  countOpenCard = [];
+  countClosed = [];
   cards.forEach((card) => {
+    countCard.push(card);
     function newCardFunc() {
       newCard = document.createElement("div");
       newCard.innerHTML = `
@@ -82,13 +102,18 @@ async function displayAllIssues(cards) {
               </div>
             </div>
               `;
+
       return newCard;
     }
-    cardContainer.append(newCardFunc())
+
     if (card.status === "open") {
+      countOpenCard.push(card);
       openCards.append(newCardFunc());
     } else if (card.status === "closed") {
+      countClosed.push(card);
       closedCards.append(newCardFunc());
     }
+    cardContainer.append(newCardFunc());
   });
+  updateCount("all");
 }
