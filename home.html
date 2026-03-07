@@ -38,23 +38,31 @@
     </style>
   </head>
   <body>
-    <nav class="navbar bg-base-100 shadow-sm ">
-   <div class="flex justify-between container mx-auto">
-    <div class=" flex items-center gap-1 ">
-        <img class="w-10" src="./assets/github-logo.png" alt="logo" />
-        <h1 class="text-2xl font-bold hidden md:block">GitHub Issues Tracker</h1>
+    <nav class="navbar bg-base-100 shadow-sm">
+      <div class="flex justify-between container mx-auto">
+        <div class="flex items-center gap-1">
+          <img class="w-10" src="./assets/github-logo.png" alt="logo" />
+          <h1 class="text-2xl font-bold hidden md:block">
+            GitHub Issues Tracker
+          </h1>
+        </div>
+        <div class="navbar-end flex gap-1">
+          <input
+            type="text"
+            placeholder=" Search issues..."
+            class="input input-bordered outline-none w-42 md:w-fit"
+          />
+          <button class="btn btn-primary">+ New Issue</button>
+        </div>
       </div>
-      <div class=" navbar-end flex gap-1">
-        <input
-          type="text"
-          
-          placeholder=" Search issues..."
-          class="input input-bordered outline-none w-screen md:w-fit "
-        />
-        <button class="btn btn-primary">+ New Issue</button>
-      </div>
-   </div>
     </nav>
-   
+    <main class="containermx-auto">
+      <div id="buttons" class=" py-5 px-2 border-[#ddd] bg-white shadow-sm">
+        <button class="btn">All</button>
+        <button class="btn">Open</button>
+        <button class="btn">Closed</button>
+      </div>
+    </main>
+    <script src="./js/home.js"></script>
   </body>
 </html>
