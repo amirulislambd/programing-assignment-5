@@ -38,7 +38,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar bg-base-100 shadow-sm ">
+    <nav class="navbar bg-base-100 shadow-sm">
       <div class="flex justify-between container mx-auto">
         <div class="flex items-center gap-1">
           <img class="w-10" src="./assets/github-logo.png" alt="logo" />
@@ -58,25 +58,67 @@
     </nav>
     <main class="container mx-auto">
       <!-- conditional buttons -->
-      <div id="buttons" class="py-5 md:py-8 px-2 shadow bg-white  ">
-        <button class="btn">All</button>
-        <button class="btn">Open</button>
-        <button class="btn">Closed</button>
+      <div id="buttons" class="py-5 md:py-8 px-2 shadow bg-white">
+        <button id="allBtn" class="btn">All</button>
+        <button id="openBtn" class="btn">Open</button>
+        <button id="closedBtn" class="btn">Closed</button>
       </div>
       <!-- issues count section -->
       <section class="px-2 py-5 md:py-10 rounded shadow-sm mt-2 md:mt-5">
         <div class="flex flex-col md:flex-row items-center justify-between">
-          <div class="left-side flex flex-col md:flex-row  items-center gap-1">
-            <div class="bg-purple-300/50 p-2 rounded-full"><img src="./assets/Aperture.png" alt="Aperture.png" /></div>
-            <div class="flex flex-col  items-center md:items-start">
+          <div class="left-side flex flex-col md:flex-row items-center gap-1">
+            <div class="bg-purple-300/50 p-2 rounded-full">
+              <img src="./assets/Aperture.png" alt="Aperture.png" />
+            </div>
+            <div class="flex flex-col items-center md:items-start">
               <h1 id="totalIssues" class="text-xl font-bold md:text-2xl">0</h1>
               <p>Track and manage your project issues</p>
             </div>
           </div>
           <div class="divider mb-0"></div>
           <div class="right-sidd flex items-center gap-4">
-            <p><span class="text-green-500 w-5 h-5 rounded-full"><i class="fa-solid fa-circle-dot"></i></span> Open</p>
-            <p><span class="text-purple-500 w-5 h-5"><i class="fa-solid fa-circle-dot"></i> </span>Closed</p>
+            <p>
+              <span class="text-green-500 w-5 h-5 rounded-full"
+                ><i class="fa-solid fa-circle-dot"></i
+              ></span>
+              Open
+            </p>
+            <p>
+              <span class="text-purple-500 w-5 h-5"
+                ><i class="fa-solid fa-circle-dot"></i> </span
+              >Closed
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- all card section -->
+      <section id="cardContainer" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="card card-body shadow space-y-3 h-fit">
+          <div class="flex justify-between">
+            <img src="./assets/Open-Status.png" alt="" />
+            <h1 class="text-red-500 py-2 px-5 md:px-8 bg-red-100 rounded-full md:text-xl font-bold">HIGH</h1>
+          </div>
+          <div class="space-y-2">
+            <h1 class="text-2xl font-bold">
+              Fix navigation menu on mobile devices
+            </h1>
+            <p class="text-gray-400 line-clamp-2">
+              The navigation menu doesn't collapse properly on mobile devices...
+            </p>
+          </div>
+          <div class="flex gap-2">
+            <p class="btn bg-red-100 rounded-full border border-red-500 text-red-500 font-bold">
+              <span><i class="fa-solid fa-bug"></i></span> BUG
+            </p>
+            <p class=" bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 font-bold">
+              <span><i class="fa-regular fa-life-ring"></i></span> help wanted
+            </p>
+          </div>
+          <div class="divider"></div>
+          <div class="space-y-2">
+            <p>#1by john_doe</p>
+            <p>1/15/2024</p>
           </div>
         </div>
       </section>
