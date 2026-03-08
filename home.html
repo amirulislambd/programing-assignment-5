@@ -38,7 +38,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar bg-base-100 shadow-sm">
+    <nav class="navbar bg-base-100 shadow sticky top-0 z-2">
       <div class="flex justify-between container mx-auto">
         <div class="flex items-center gap-1">
           <img class="w-10" src="./assets/github-logo.png" alt="logo" />
@@ -59,7 +59,7 @@
     </nav>
     <main class="container mx-auto">
       <!-- conditional buttons -->
-      <div id="buttons" class="py-5 md:py-8 px-2 shadow bg-white">
+      <div id="buttons" class="py-5 md:py-8 px-2 shadow bg-white flex gap-2 items-center justify-center md:justify-start sticky top-12 z-1">
         <button id="allBtn" class="btn btn-primary">All</button>
         <button  id="openBtn" class="btn">Open</button>
         <button id="closedBtn" class="btn">Closed</button>
@@ -129,7 +129,7 @@
 
       <!-- spinner -->
       <section id="spinner" class="flex items-center justify-center py-20 hidden">
-       <span class="loading loading-dots loading-xl"></span>
+        <span class="loading loading-bars loading-xl"></span>
       </section>
 
       <!-- Opened Cards -->
