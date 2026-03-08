@@ -93,23 +93,28 @@ async function modalIssues(data) {
                 </div>
 
                 <div class="flex gap-2 my-3">
-                <p class=" bg-red-100 rounded-full border border-red-500 text-red-500 text-center uppercase  px-2 font-bold flex items-center">
-                  <span><i class="fa-solid fa-bug"></i></span> ${data.labels[0]}
-                </p>
-                <p class=" bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 text-center uppercase  px-2  font-bold flex  items-center">
-                  <span><i class="fa-regular fa-life-ring"></i></span> ${data.labels[1]}
-                </p>
+                <div>
+              ${data.labels[0]?` <p class=" w-fit bg-red-100 rounded-full border border-red-500 text-red-500  p-1 font-bold uppercase ">
+                <span><i class="fa-regular fa-life-ring"></i>${data.labels[0]}</span>
+              </p>`:''}
+              </div>
+              <div>
+              ${data.labels[1]?` <p class="w-fit  bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 p-1  font-bold uppercase">
+                <span><i class="fa-regular fa-life-ring"></i>${data.labels[1]}</span>
+              </p>`:''}
+              </div>
               </div>
 
                 <p class="">${data.description}</p>
                 <div class="flex justify-between my-3">
                     <div>
-                        <p>assignee:</p>
-                        <p class="text-xl font-bold">${data.assignee}</p>
+                    ${data.assignee ?`<p>assignee:</p>
+                      <p class="text-xl font-bold">${data.assignee}</p>`:''}
+                        
                     </div>
                     <div class="flex flex-col items-center ">
                         <p>priority</p>
-                        <p class="bg-red-500  px-3 text-center text-white rounded-full uppercase">${data.priority}</p>
+                        <h1 class="${data.priority === "high" ? "bg-red-100 text-red-500" : data.priority === "medium" ? "bg-yellow-100 text-yellow-500" : "bg-gray-200 text-gray-500"}  px-2  rounded-full  font-bold uppercase">${data.priority}</h1>
                     </div>
                 </div>
                 <div class="modal-action">
@@ -155,10 +160,11 @@ async function displayAllIssues(cards) {
     function newCardFunc() {
       newCard = document.createElement("div");
       newCard.innerHTML = `
-              <div onclick="loadSingleIssues(${card.id})" class="card card-body shadow space-y-3 md:space-y-5 h-full border-t-4 ${card.status === "open" ? "border-green-500" : "border-purple-500"}">
+              <div onclick="loadSingleIssues(${card.id})" class="card card-body  shadow space-y-3 md:space-y-5 h-full border-t-4 ${card.status === "open" ? "border-green-500" : "border-purple-500"}">
               <div class="flex justify-between">
-                <img class="w-10 h-10 " src="./assets/Open-Status.png" alt="" />
-                <h1 class="text-red-500 py-2 px-5 md:px-8 bg-red-100 rounded-full md:text-xl font-bold">${card.priority}</h1>
+              ${card.status === "open" ? '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>' : '<i class="fa-regular fa-circle-check text-purple-500 text-2xl md:text-3xl"></i>'}
+              
+                <h1 class="${card.priority === "high" ? "bg-red-100 text-red-500" : card.priority === "medium" ? "bg-yellow-100 text-yellow-500" : "bg-gray-200 text-gray-500"} py-1 px-5  rounded-full  font-bold uppercase">${card.priority}</h1>
               </div>
               <div class="space-y-2">
                 <h1 class="text-2xl font-bold">
@@ -168,13 +174,19 @@ async function displayAllIssues(cards) {
                   ${card.description}
                 </p>
               </div>
-              <div class="flex gap-2">
-                <p class=" bg-red-100 rounded-full border border-red-500 text-red-500 text-center py-2 font-bold">
-                  <span><i class="fa-solid fa-bug"></i></span> ${card.labels[0]}
-                </p>
-                <p class=" bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 text-center py-2  font-bold">
-                  <span><i class="fa-regular fa-life-ring"></i></span> ${card.labels[1]}
-                </p>
+              <div class="flex gap-2 ">
+              <div>
+              ${card.labels[0]?` <p class=" w-fit bg-red-100 rounded-full border border-red-500 text-red-500  p-1 font-bold uppercase ">
+                <span><i class="fa-regular fa-life-ring"></i>${card.labels[0]}</span>
+              </p>`:''}
+              </div>
+              <div>
+              ${card.labels[1]?` <p class="w-fit  bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 p-1  font-bold uppercase">
+                <span><i class="fa-regular fa-life-ring"></i>${card.labels[1]}</span>
+              </p>`:''}
+              </div>
+              </div>
+              <div>
               </div>
               <div class="divider"></div>
               <div class="space-y-2">
