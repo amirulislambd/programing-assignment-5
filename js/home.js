@@ -57,6 +57,7 @@ document.getElementById("buttons").addEventListener("click", (e) => {
       closedCards.classList.remove("hidden");
       updateCount("closed");
     }
+    
   }
 });
 
@@ -94,12 +95,12 @@ async function modalIssues(data) {
 
                 <div class="flex gap-2 my-3">
                 <div>
-              ${data.labels[0]?` <p class=" w-fit bg-red-100 rounded-full border border-red-500 text-red-500  p-1 font-bold uppercase ">
-                <span><i class="fa-regular fa-life-ring"></i>${data.labels[0]}</span>
+                ${data.labels[0]?` <p class=" w-fit bg-red-100 rounded-full border border-red-500 text-red-500  px-1 font-bold uppercase ">${data.labels[0].toLowerCase()==='bug'? '<i class="fa-solid fa-bug"></i>':'<i class="fa-solid fa-wand-magic-sparkles"></i>' }
+                <span>${data.labels[0]}</span>
               </p>`:''}
               </div>
               <div>
-              ${data.labels[1]?` <p class="w-fit  bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 p-1  font-bold uppercase">
+              ${data.labels[1]?` <p class="w-fit  bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 px-1  font-bold uppercase">
                 <span><i class="fa-regular fa-life-ring"></i>${data.labels[1]}</span>
               </p>`:''}
               </div>
@@ -120,7 +121,7 @@ async function modalIssues(data) {
                 <div class="modal-action">
                   <form method="dialog">
                     <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn">Close</button>
+                    <button class="btn btn-error text-white  ">Close</button>
                   </form>
                 </div>
               </div>
@@ -131,8 +132,13 @@ async function modalIssues(data) {
 async function loadSearchIssue() {
   const searchInput = document.getElementById("search");
   const searchValue = searchInput.value;
-
+  const selectedBtn = document.querySelectorAll("#buttons .btn");
+  selectedBtn.forEach((btn) => {
+    console.log(btn)
+    btn.classList.remove("btn-primary");
+  });
   if (searchValue.trim() === "") {
+    document.getElementById('allBtn').classList.add('btn-primary')
     loadAllIssues();
     return;
   }
@@ -162,7 +168,7 @@ async function displayAllIssues(cards) {
       newCard.innerHTML = `
               <div onclick="loadSingleIssues(${card.id})" class="card card-body  shadow space-y-3 md:space-y-5 h-full border-t-4 ${card.status === "open" ? "border-green-500" : "border-purple-500"}">
               <div class="flex justify-between">
-              ${card.status === "open" ? '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>' : '<i class="fa-regular fa-circle-check text-purple-500 text-2xl md:text-3xl"></i>'}
+              ${card.status === "open" ? '<i class="fa-solid fa-circle-check text-green-500 text-2xl md:text-3xl"></i>' : '<i class="fa-regular fa-circle-check text-purple-500 text-2xl md:text-3xl"></i>'}
               
                 <h1 class="${card.priority === "high" ? "bg-red-100 text-red-500" : card.priority === "medium" ? "bg-yellow-100 text-yellow-500" : "bg-gray-200 text-gray-500"} py-1 px-5  rounded-full  font-bold uppercase">${card.priority}</h1>
               </div>
@@ -176,8 +182,8 @@ async function displayAllIssues(cards) {
               </div>
               <div class="flex gap-2 ">
               <div>
-              ${card.labels[0]?` <p class=" w-fit bg-red-100 rounded-full border border-red-500 text-red-500  p-1 font-bold uppercase ">
-                <span><i class="fa-regular fa-life-ring"></i>${card.labels[0]}</span>
+              ${card.labels[0]?` <p class=" w-fit bg-red-100 rounded-full border border-red-500 text-red-500  p-1 font-bold uppercase ">${card.labels[0].toLowerCase()==='bug'? '<i class="fa-solid fa-bug"></i>':'<i class="fa-solid fa-wand-magic-sparkles"></i>' }
+                <span>${card.labels[0]}</span>
               </p>`:''}
               </div>
               <div>
