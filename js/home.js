@@ -13,7 +13,7 @@ let countOpenCard = [];
 let countClosed = [];
 
 document.getElementById('logOut').addEventListener('click',()=>{
-  window.location.href="../index.html"
+  window.location.href="./index.html"
 })
 
 function showSpinner(status) {
@@ -36,7 +36,8 @@ function updateCount(status) {
   }
 }
 document.getElementById("buttons").addEventListener("click", (e) => {
-  const target = e.target;
+  const target = e.target.closest('.btn');
+  if(!target)return
   const selectedBtn = document.querySelectorAll("#buttons .btn");
   selectedBtn.forEach((btn) => {
     btn.classList.remove("btn-primary");
@@ -72,7 +73,7 @@ async function loadAllIssues() {
   );
   const data = await res.json();
   displayAllIssues(data.data);
-  
+  showSpinner(false);
 }
 async function loadSingleIssues(id) {
   showSpinner(true);
@@ -177,7 +178,7 @@ async function displayAllIssues(cards) {
                 <h1 class="${card.priority === "high" ? "bg-red-100 text-red-500" : card.priority === "medium" ? "bg-yellow-100 text-yellow-500" : "bg-gray-200 text-gray-500"} py-1 px-5  rounded-full  font-bold uppercase">${card.priority}</h1>
               </div>
               <div class="space-y-2">
-                <h1 class="text-2xl font-bold">
+                <h1 class="text-2xl font-bold line-clamp-1">
                   ${card.title}
                 </h1>
                 <p class="text-gray-400 line-clamp-2">
@@ -204,8 +205,7 @@ async function displayAllIssues(cards) {
                 <p>${new Date(card.updatedAt).toLocaleDateString("en", "GB")}</p>
               </div>
             </div>
-              `;
-              showSpinner(false);
+              `;         
       return newCard;
     }
 
@@ -219,4 +219,5 @@ async function displayAllIssues(cards) {
     cardContainer.append(newCardFunc());
   });
   updateCount("all");
+  // showSpinner(false);
 }
