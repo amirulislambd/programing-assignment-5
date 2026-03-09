@@ -90,7 +90,7 @@ async function modalIssues(data) {
   modal.innerHTML = "";
   const createModal = document.createElement("div");
   createModal.innerHTML = `
-  <div class="modal-box ">
+  <div class="modal-box  w-5xl">
                 <h3 class="text-xl font-bold">${data.title}</h3>
                 <div class=" flex items-center gap-1 md:gap-3 mb-3">
                 <div><p class=" text-center text-white uppercase rounded-full px-2 text-sm md:text-lg ${data.status === "open" ? "bg-green-500" : "bg-purple-500"}"> ${data.status}</p></div>
