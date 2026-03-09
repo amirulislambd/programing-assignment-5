@@ -12,6 +12,10 @@ let countCard = [];
 let countOpenCard = [];
 let countClosed = [];
 
+document.getElementById('logOut').addEventListener('click',()=>{
+  window.location.href="../index.html"
+})
+
 function showSpinner(status) {
   if (status === true) {
     spinner.classList.remove("hidden");
@@ -68,7 +72,7 @@ async function loadAllIssues() {
   );
   const data = await res.json();
   displayAllIssues(data.data);
-  showSpinner(false);
+  
 }
 async function loadSingleIssues(id) {
   showSpinner(true);
@@ -85,21 +89,21 @@ async function modalIssues(data) {
   modal.innerHTML = "";
   const createModal = document.createElement("div");
   createModal.innerHTML = `
-  <div class="modal-box">
+  <div class="modal-box ">
                 <h3 class="text-xl font-bold">${data.title}</h3>
-                <div class=" flex items-center gap-3 mb-3">
-                <div><p class=" text-center text-white uppercase rounded-full px-3 py-1 ${data.status === "open" ? "bg-green-500" : "bg-purple-500"}"> ${data.status}</p></div>
-                    <p class="py-4">Opened by <span>${data.author}.</span></p>
-                    <p class="py-4"><span>${new Date(data.createdAt).toLocaleDateString("en-GB")}</span></p>
+                <div class=" flex items-center gap-1 md:gap-3 mb-3">
+                <div><p class=" text-center text-white uppercase rounded-full px-2 text-sm md:text-lg ${data.status === "open" ? "bg-green-500" : "bg-purple-500"}"> ${data.status}</p></div>
+                    <p class="flex text-sm md:text-lg">Opened by <span>${data.author}.</span></p>
+                    <p class="flex text-sm md:text-lg"><span>${new Date(data.createdAt).toLocaleDateString("en-GB")}</span></p>
                 </div>
 
                 <div class="flex gap-2 my-3">
-                <div>
+                <div class="text-sm md:text-lg">
                 ${data.labels[0]?` <p class=" w-fit bg-red-100 rounded-full border border-red-500 text-red-500  px-1 font-bold uppercase ">${data.labels[0].toLowerCase()==='bug'? '<i class="fa-solid fa-bug"></i>':'<i class="fa-solid fa-wand-magic-sparkles"></i>' }
                 <span>${data.labels[0]}</span>
               </p>`:''}
               </div>
-              <div>
+              <div class="text-sm md:text-lg">
               ${data.labels[1]?` <p class="w-fit  bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 px-1  font-bold uppercase">
                 <span><i class="fa-regular fa-life-ring"></i>${data.labels[1]}</span>
               </p>`:''}
@@ -107,7 +111,7 @@ async function modalIssues(data) {
               </div>
 
                 <p class="">${data.description}</p>
-                <div class="flex justify-between my-3">
+                <div class="flex justify-between my-3 bg-gray-100 rounded-lg p-4">
                     <div>
                     ${data.assignee ?`<p>assignee:</p>
                       <p class="text-xl font-bold">${data.assignee}</p>`:''}
@@ -166,7 +170,7 @@ async function displayAllIssues(cards) {
     function newCardFunc() {
       newCard = document.createElement("div");
       newCard.innerHTML = `
-              <div onclick="loadSingleIssues(${card.id})" class="card card-body  shadow space-y-3 md:space-y-5 h-full border-t-4 ${card.status === "open" ? "border-green-500" : "border-purple-500"}">
+              <div onclick="loadSingleIssues(${card.id})" class="card card-body  shadow space-y-3 md:space-y-5 h-full border-t-6 ${card.status === "open" ? "border-green-500" : "border-purple-500"}">
               <div class="flex justify-between">
               ${card.status === "open" ? '<i class="fa-solid fa-circle-check text-green-500 text-2xl md:text-3xl"></i>' : '<i class="fa-regular fa-circle-check text-purple-500 text-2xl md:text-3xl"></i>'}
               
@@ -201,7 +205,7 @@ async function displayAllIssues(cards) {
               </div>
             </div>
               `;
-
+              showSpinner(false);
       return newCard;
     }
 

@@ -53,13 +53,13 @@
             placeholder=" Search issues..."
             class="input input-bordered outline-none w-42 md:w-fit"
           />
-          <button class="btn btn-primary">+ New Issue</button>
+          <button id="logOut" class="btn btn-primary"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</button>
         </div>
       </div>
     </nav>
     <main class="container mx-auto">
       <!-- conditional buttons -->
-      <div id="buttons" class="py-5 md:py-8 px-2 shadow bg-white flex gap-2 items-center justify-center md:justify-start sticky top-12 z-1">
+      <div id="buttons" class=" py-5 md:py-8 px-2 shadow bg-white flex gap-2 items-center justify-center md:justify-start sticky top-12 z-1">
         <button id="allBtn" class="btn btn-primary">All</button>
         <button  id="openBtn" class="btn">Open</button>
         <button id="closedBtn" class="btn">Closed</button>
@@ -97,7 +97,7 @@
       </section>
 
       <!--by default all card section -->
-      <section id="cardContainer" class="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
+      <section id="cardContainer" class=" mx-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
         <!-- <div class="card card-body shadow space-y-3 h-fit"> -->
           <div class="flex justify-between">
             <img src="./assets/Open-Status.png" alt="" />
@@ -146,7 +146,7 @@
             <!-- Open the modal using ID.showModal() method -->
             <!-- <button class="btn" onclick="issues_modal.showModal()">open modal</button> -->
             <dialog id="issues_modal" class="modal modal-bottom sm:modal-middle">
-              <div id="modal">
+              <div id="modal" >
 
               </div>
             </dialog>

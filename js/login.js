@@ -20,14 +20,14 @@ const defaultPassword = document.getElementById("defaultPassword");
 
 document.getElementById("signInBtn").addEventListener("click", () => {
     defaultUser.innerText =''
-  const userNameValue = userName.value;
+  const userNameValue = userName.value.toLowerCase();
   const passwordValue = password.value;
   if(userNameValue.trim() ===''){
-    defaultUser.innerHTML = `<i class="fa-regular fa-circle-xmark "></i>Please enter <span class="text-green-500">'admin'</span> your user name`;
+    defaultUser.innerHTML = `<i class="fa-regular fa-circle-xmark "></i>Please enter <span class="text-green-500">admin</span> your user name`;
     defaultUser.classList.add('text-red-500','animate-bounce') 
     return;
   }else if (userNameValue != "admin") {
-   defaultUser.innerHTML = `<i class="fa-regular fa-circle-xmark"></i> Wrong user name Please enter 'admin'`;
+   defaultUser.innerHTML = `<i class="fa-regular fa-circle-xmark"></i> Wrong user name Please enter <span class="text-green-500">admin</span>`;
    defaultUser.classList.add('text-red-500','animate-bounce') 
     return;
   }
@@ -38,11 +38,11 @@ document.getElementById("signInBtn").addEventListener("click", () => {
       
   }
   if(passwordValue.trim()===''){
-    defaultPassword.innerHTML = `<i class="fa-regular fa-circle-xmark"></i> Please enter <span class="text-green-500">'admin123'</span>  your password`;
+    defaultPassword.innerHTML = `<i class="fa-regular fa-circle-xmark"></i> Please enter <span class="text-green-500">admin123</span>  your password`;
     defaultPassword.classList.add('text-red-500','animate-bounce') 
     return;
   }else if (passwordValue != "admin123") {
-   defaultPassword.innerHTML = `<i class="fa-regular fa-circle-xmark"></i> Wrong Your Password Please enter 'admin123'`;
+   defaultPassword.innerHTML = ` <p class="text-center"><i class="fa-regular fa-circle-xmark"></i> Wrong Your Password Please enter <span class="text-green-500 ">admin123</span></p> `;
    defaultPassword.classList.add('text-red-500','animate-bounce') 
     return;
   } else{
