@@ -90,12 +90,14 @@ async function modalIssues(data) {
   modal.innerHTML = "";
   const createModal = document.createElement("div");
   createModal.innerHTML = `
-  <div class="modal-box  w-5xl">
+  <div class="modal-box ">
                 <h3 class="text-xl font-bold">${data.title}</h3>
                 <div class=" flex items-center gap-1 md:gap-3 mb-3">
                 <div><p class=" text-center text-white uppercase rounded-full px-2 text-sm md:text-lg ${data.status === "open" ? "bg-green-500" : "bg-purple-500"}"> ${data.status}</p></div>
-                    <p class="flex text-sm md:text-lg">Opened by <span>${data.author}.</span></p>
-                    <p class="flex text-sm md:text-lg"><span>${new Date(data.createdAt).toLocaleDateString("en-GB")}</span></p>
+                <div class="flex items-center md:gap-2">
+                <p class="flex text-sm md:text-lg">Opened by  <span>${data.author}.</span></p>
+                <p class="flex text-sm md:text-lg"><span>${new Date(data.createdAt).toLocaleDateString("en-GB")}</span></p>
+                </div>
                 </div>
 
                 <div class="flex gap-2 my-3">
@@ -171,7 +173,7 @@ async function displayAllIssues(cards) {
     function newCardFunc() {
       newCard = document.createElement("div");
       newCard.innerHTML = `
-              <div onclick="loadSingleIssues(${card.id})" class="card card-body  shadow space-y-3 md:space-y-5 h-full border-t-6 ${card.status === "open" ? "border-green-500" : "border-purple-500"}">
+              <div onclick="loadSingleIssues(${card.id})" class=" px-3 md:px-4 py-3 md:py-4 rounded-xl shadow space-y-3 md:space-y-5 h-full border-t-6 ${card.status === "open" ? "border-green-500" : "border-purple-500"}">
               <div class="flex justify-between">
               ${card.status === "open" ? '<i class="fa-solid fa-circle-check text-green-500 text-2xl md:text-3xl"></i>' : '<i class="fa-regular fa-circle-check text-purple-500 text-2xl md:text-3xl"></i>'}
               
@@ -185,14 +187,14 @@ async function displayAllIssues(cards) {
                   ${card.description}
                 </p>
               </div>
-              <div class="flex gap-2 ">
+              <div class="flex gap-1 md:gap-2 ">
               <div>
-              ${card.labels[0]?` <p class=" w-fit bg-red-100 rounded-full border border-red-500 text-red-500  p-1 font-bold uppercase ">${card.labels[0].toLowerCase()==='bug'? '<i class="fa-solid fa-bug"></i>':'<i class="fa-solid fa-wand-magic-sparkles"></i>' }
+              ${card.labels[0]?` <p class=" bg-red-50 rounded-full border-1 border-red-500 text-red-500  p-1 font-bold md:uppercase ">${card.labels[0].toLowerCase()==='bug'? '<i class="fa-solid fa-bug"></i>':'<i class="fa-solid fa-wand-magic-sparkles"></i>' }
                 <span>${card.labels[0]}</span>
               </p>`:''}
               </div>
               <div>
-              ${card.labels[1]?` <p class="w-fit  bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 p-1  font-bold uppercase">
+              ${card.labels[1]?` <p class="w-fit  bg-yellow-50 rounded-full  border-1 border-yellow-500 text-yellow-500 p-1  font-bold md:uppercase">
                 <span><i class="fa-regular fa-life-ring"></i>${card.labels[1]}</span>
               </p>`:''}
               </div>
