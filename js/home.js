@@ -12,9 +12,9 @@ let countCard = [];
 let countOpenCard = [];
 let countClosed = [];
 
-document.getElementById('logOut').addEventListener('click',()=>{
-  window.location.href="./index.html"
-})
+document.getElementById("logOut").addEventListener("click", () => {
+  window.location.href = "./index.html";
+});
 
 function showSpinner(status) {
   if (status === true) {
@@ -36,8 +36,8 @@ function updateCount(status) {
   }
 }
 document.getElementById("buttons").addEventListener("click", (e) => {
-  const target = e.target.closest('.btn');
-  if(!target)return
+  const target = e.target.closest(".btn");
+  if (!target) return;
   const selectedBtn = document.querySelectorAll("#buttons .btn");
   selectedBtn.forEach((btn) => {
     btn.classList.remove("btn-primary");
@@ -62,7 +62,6 @@ document.getElementById("buttons").addEventListener("click", (e) => {
       closedCards.classList.remove("hidden");
       updateCount("closed");
     }
-    
   }
 });
 
@@ -94,7 +93,7 @@ async function modalIssues(data) {
                 <h3 class="text-xl font-bold">${data.title}</h3>
                 <div class=" flex items-center gap-1 md:gap-3 mb-3">
                 <div><p class=" text-center text-white uppercase rounded-full px-2 text-sm md:text-lg ${data.status === "open" ? "bg-green-500" : "bg-purple-500"}"> ${data.status}</p></div>
-                <div class="flex items-center md:gap-2">
+                <div class="flex flex-wrap items-center md:gap-2">
                 <p class="flex text-sm md:text-lg">Opened by  <span>${data.author}.</span></p>
                 <p class="flex text-sm md:text-lg"><span>${new Date(data.createdAt).toLocaleDateString("en-GB")}</span></p>
                 </div>
@@ -102,22 +101,34 @@ async function modalIssues(data) {
 
                 <div class="flex gap-2 my-3">
                 <div class="text-sm md:text-lg">
-                ${data.labels[0]?` <p class=" w-fit bg-red-100 rounded-full border border-red-500 text-red-500  px-1 font-bold uppercase ">${data.labels[0].toLowerCase()==='bug'? '<i class="fa-solid fa-bug"></i>':'<i class="fa-solid fa-wand-magic-sparkles"></i>' }
+                ${
+                  data.labels[0]
+                    ? ` <p class=" w-fit bg-red-100 rounded-full border border-red-500 text-red-500  px-1 font-bold uppercase ">${data.labels[0].toLowerCase() === "bug" ? '<i class="fa-solid fa-bug"></i>' : '<i class="fa-solid fa-wand-magic-sparkles"></i>'}
                 <span>${data.labels[0]}</span>
-              </p>`:''}
+              </p>`
+                    : ""
+                }
               </div>
               <div class="text-sm md:text-lg">
-              ${data.labels[1]?` <p class="w-fit  bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 px-1  font-bold uppercase">
+              ${
+                data.labels[1]
+                  ? ` <p class="w-fit  bg-yellow-100 rounded-full  border border-yellow-500 text-yellow-500 px-1  font-bold uppercase">
                 <span><i class="fa-regular fa-life-ring"></i>${data.labels[1]}</span>
-              </p>`:''}
+              </p>`
+                  : ""
+              }
               </div>
               </div>
 
                 <p class="">${data.description}</p>
                 <div class="flex justify-between my-3 bg-gray-100 rounded-lg p-4">
                     <div>
-                    ${data.assignee ?`<p>assignee:</p>
-                      <p class="text-xl font-bold">${data.assignee}</p>`:''}
+                    ${
+                      data.assignee
+                        ? `<p>assignee:</p>
+                      <p class="text-xl font-bold">${data.assignee}</p>`
+                        : ""
+                    }
                         
                     </div>
                     <div class="flex flex-col items-center ">
@@ -141,11 +152,11 @@ async function loadSearchIssue() {
   const searchValue = searchInput.value;
   const selectedBtn = document.querySelectorAll("#buttons .btn");
   selectedBtn.forEach((btn) => {
-    console.log(btn)
+    console.log(btn);
     btn.classList.remove("btn-primary");
   });
   if (searchValue.trim() === "") {
-    document.getElementById('allBtn').classList.add('btn-primary')
+    document.getElementById("allBtn").classList.add("btn-primary");
     loadAllIssues();
     return;
   }
@@ -154,6 +165,15 @@ async function loadSearchIssue() {
     `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
   );
   const data = await res.json();
+  if(!data.data || data.data.length ===0){
+    document.getElementById('notFound').classList.remove('hidden')
+    cardContainer.innerHTML=''
+    openCards.innerHTML=''
+    closedCards.innerHTML=''
+  }else{
+    document.getElementById('notFound').classList.add('hidden')
+
+  }
   displayAllIssues(data.data);
   showSpinner(false);
 }
@@ -187,16 +207,24 @@ async function displayAllIssues(cards) {
                   ${card.description}
                 </p>
               </div>
-              <div class="flex gap-1 md:gap-2 ">
+              <div class="flex gap-1">
               <div>
-              ${card.labels[0]?` <p class=" bg-red-50 rounded-full border-1 border-red-500 text-red-500  p-1 font-bold md:uppercase ">${card.labels[0].toLowerCase()==='bug'? '<i class="fa-solid fa-bug"></i>':'<i class="fa-solid fa-wand-magic-sparkles"></i>' }
+              ${
+                card.labels[0]
+                  ? ` <p class="flex items-center text-sm bg-red-50 rounded-full border-1 border-red-500 text-red-500  p-1 font-bold uppercase ">${card.labels[0].toLowerCase() === "bug" ? '<i class="fa-solid fa-bug"></i>' : '<i class="fa-solid fa-wand-magic-sparkles"></i>'}
                 <span>${card.labels[0]}</span>
-              </p>`:''}
+              </p>`
+                  : ""
+              }
               </div>
               <div>
-              ${card.labels[1]?` <p class="w-fit  bg-yellow-50 rounded-full  border-1 border-yellow-500 text-yellow-500 p-1  font-bold md:uppercase">
+              ${
+                card.labels[1]
+                  ? ` <p class="flex items-center text-sm bg-yellow-50 rounded-full  border-1 border-yellow-500 text-yellow-500 p-1  font-bold uppercase">
                 <span><i class="fa-regular fa-life-ring"></i>${card.labels[1]}</span>
-              </p>`:''}
+              </p>`
+                  : ""
+              }
               </div>
               </div>
               <div>
@@ -207,7 +235,7 @@ async function displayAllIssues(cards) {
                 <p>${new Date(card.updatedAt).toLocaleDateString("en", "GB")}</p>
               </div>
             </div>
-              `;         
+              `;
       return newCard;
     }
 
